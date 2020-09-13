@@ -1,48 +1,45 @@
 //jshint esversion:6
 
 import React from 'react';
-import './App.css';
-//Import react routes and its other modules
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-//All components
-import AddUser from './components/Adduser.js';
-import Home from './components/Home.js';
-import Header from './components/Header.js';
+import { connect } from 'react-redux';
 
-//bootstrap
+
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-//Impoert axios services
-import axios from 'axios';
+
 
 
 
 class App extends React.Component {
 
 
+
     render() {
 
         return (
-            <Router>
-                <div className="maincontainer">
-                    <Header></Header>
 
-
-                    <Switch>
-
-                        <Route exact path='/adduser' component={AddUser} />
-                        <Route exact path='/home' component={Home} />
-                        <Route exact path='' component={Home} />
-
-                    </Switch>
-
-
-
-
-                </div>
-            </Router>
+            <div className="container">
+                <h4>Simple count App</h4>
+                <button onClick={this.props.increment} className="btn btn-primary">+</button>
+                <p className="btn btn-warn">{this.props.count}</p>
+                <button onClick={this.props.decrement} className="btn btn-primary">-</button>
+            </div>
         )
+
     };
 }
 
-export default App;
+function mapStateToProps(state) {
+    return { count: state.count }
+}
+
+function mapDispatch(dispatch) {
+    return {
+        increment: () => dispatch({ type: 'INCREASE' }),
+        decrement: () => dispatch({ type: 'DECREASE' })
+    }
+
+}
+
+export default connect(mapStateToProps, mapDispatch)(App);

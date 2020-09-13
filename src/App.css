@@ -5,3 +5,15 @@ button .nav-link {padding: 0px!important;}
 button .nav-link span{color: #fff;
 margin: 0 5px 0 5px;
 font-size: 15px;}
+
+.container {
+
+    width: 20%;
+    margin: 0 auto;
+    box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.26);
+    margin-top: 150px;
+    text-align: center;
+    padding: 100px;
+
+
+}
